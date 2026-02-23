@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "PigpenCipher";
+  src: url("./assets/Pigpen-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.pigpen-text {
+  font-family: "PigpenCipher", sans-serif;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  color: #333;
+}

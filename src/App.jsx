@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import rot from "rot"; // ROT13
+import CypherResult from "./components/CypherResult";
 
 // encryptText function
 const encryptText = (inputText) => rot(inputText);
@@ -12,6 +13,18 @@ export default function App() {
   const [displayText, setDisplayText] = useState();
   const [displayEncryptedText, setDisplayEncryptedText] = useState();
   const [displayDecryptedText, setDisplayDecryptedText] = useState();
+  // gets the saved pigpen from localStorage then use it as default value
+  const [displayPigPenText, setDisplayPigPenText] = useState(() => {
+    const loadStorage = localStorage.getItem("pigpen");
+    return loadStorage || "";
+  });
+
+  // save to localStorage
+  // it runs everytime displayPigPenText updates
+  useEffect(() => {
+    // if displayPigPenText has value
+    localStorage.setItem("pigpen", displayPigPenText);
+  }, [displayPigPenText]);
 
   // gets input text
   function getText(e) {
@@ -29,12 +42,17 @@ export default function App() {
     const encrypt = encryptText(dataText);
     // this variable calls the decrypt function
     const decrypt = decryptText(encrypt);
+    // this converts string to UPPERCASE for PigPen
+    const pigPenText = dataText.toUpperCase();
+
     // pass the reversedText value into setDisplayText for re-rendering
     setDisplayText(reverse);
     // pass the encryptText value into setDisplayEncryptedText for re-rendering
     setDisplayEncryptedText(encrypt);
     // pass the encryptText value into setDisplayDecryptedText for re-rendering
     setDisplayDecryptedText(decrypt);
+    // pass the pigpen text to re-render
+    setDisplayPigPenText(pigPenText);
     // clears the input field
     setText("");
   }
@@ -51,8 +69,19 @@ export default function App() {
     return joinText;
   }
 
+  // clears the form and display
+  function clearForm() {
+    setText("");
+    setDisplayText("");
+    setDisplayEncryptedText("");
+    setDisplayDecryptedText("");
+    setDisplayPigPenText("");
+    localStorage.removeItem("pigpen");
+  }
+
   return (
     <>
+      <h1>C-y-p-h-e-r</h1>
       <form onSubmit={submitText}>
         <label>Enter something:</label>
         <input
@@ -61,11 +90,17 @@ export default function App() {
           placeholder="Enter something"
           onChange={getText}
         />
-        <button type="submit">Reverse</button>
+        <button type="submit">Submit</button>
       </form>
-      <p>Reversed Text: {displayText}</p>
-      <p>Encrypted Text: {displayEncryptedText}</p>
-      <p>Decrypted Text: {displayDecryptedText}</p>
+      <CypherResult label="Reversed" text={displayText} />
+      <CypherResult label="Encrypted" text={displayEncryptedText} />
+      <CypherResult label="Decrypted" text={displayDecryptedText} />
+      <CypherResult
+        label="Pigpen Cipher"
+        text={displayPigPenText}
+        isPigPen={true}
+      />
+      <button onClick={() => clearForm()}>Clear Form</button>
     </>
   );
 }
