@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
-import TranslatePage from "./pages/TranslatePage";
+import LandPage from "./pages/LandPage";
 import GamePage from "./pages/GamePage";
 
 export default function App() {
@@ -19,8 +19,8 @@ export default function App() {
           className={`flex-1 transition-all duration-300 ${isSidebarOpen ? "ml-0" : "ml-20"}`}
         >
           <Routes>
-            <Route path="/" element={<GamePage />} />
-            <Route path="/translate" element={<TranslatePage />} />
+            <Route path="/" element={<LandPage />} />
+            <Route path="/gamepage" element={<GamePage />} />
           </Routes>
         </main>
       </div>

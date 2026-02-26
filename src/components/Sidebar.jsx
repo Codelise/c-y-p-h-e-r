@@ -6,7 +6,7 @@ export default function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
 
   const navItems = [
     { label: "Dashboard", path: "/", icon: "grid_view" },
-    { label: "Sandbox Lab", path: "/translate", icon: "science" },
+    { label: "Sandbox Lab", path: "/gamepage", icon: "science" },
     { label: "Algorithms", path: "/algorithms", icon: "calculate" },
     { label: "History", path: "/history", icon: "history" },
   ];
