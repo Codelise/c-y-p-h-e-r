@@ -1,14 +1,16 @@
-export default function GameStatus() {
+import { useState } from "react";
+
+export default function GameStatus({ round, score }) {
   return (
-    <div className="flex justify-between items-center gap-4 py-6">
+    <div className="flex items-center justify-between gap-4 py-6">
       <div className="glass-panel px-6 py-3 rounded-2xl border-white/5 bg-white/5 flex flex-col items-center min-w-[120px]">
         <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">
           Round
         </span>
-        <span className="text-xl font-black text-white">1 / 10</span>
+        <span className="text-xl font-black text-white">{round}/10</span>
       </div>
 
-      <div className="relative w-20 h-20 flex items-center justify-center">
+      {/* <div className="relative flex items-center justify-center w-20 h-20">
         <svg
           className="absolute inset-0 w-full h-full -rotate-90"
           viewBox="0 0 100 100"
@@ -40,13 +42,15 @@ export default function GameStatus() {
             Sec
           </span>
         </div>
-      </div>
+      </div> */}
 
       <div className="glass-panel px-6 py-3 rounded-2xl border-white/5 bg-white/5 flex flex-col items-center min-w-[120px]">
         <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">
           Score
         </span>
-        <span className="text-xl font-black text-cyan-400">1,250</span>
+        <span className="text-xl font-black text-cyan-400">
+          {score.toLocaleString()}
+        </span>
       </div>
     </div>
   );

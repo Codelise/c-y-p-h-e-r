@@ -1,3 +1,4 @@
+import rot from "rot";
 // functions inside Object
 export const encryptorFunctions = {
   REVERSE: (inputText) => inputText.split("").reverse().join(""),
@@ -14,7 +15,7 @@ const fetchRandomWord = async () => {
       "https://random-word-api.herokuapp.com/word?number=1",
     );
     const data = await response.json();
-    console.log(data[0].toUpperCase());
+    console.log(data[0]);
     return data[0].toUpperCase(); // gets the first word from API
   } catch (error) {
     alert("Error fetching word from API");
@@ -28,7 +29,7 @@ export const generateNewGame = async () => {
   const cipherTypes = Object.keys(encryptorFunctions); // makes keys : REVERSE, ROT13, PIGPEN
   const chosenCipherTypes =
     cipherTypes[Math.floor(Math.random() * cipherTypes.length)]; // picks one random encryptor
-  const encryptedWord = encryptors[chosenCipherTypes](correctAnswer); // applies the chosen encryptor from choseCipherTypes
+  const encryptedWord = encryptorFunctions[chosenCipherTypes](correctAnswer); // applies the chosen encryptor from choseCipherTypes
 
   //   this will give 3 wrong answers
   //   fetches 3 random words from API
@@ -40,7 +41,7 @@ export const generateNewGame = async () => {
 
   //   combines the correct answer, chosen encryption and 3 wrong answers, all UPPERCASE for now
   const gameOptionShuffle = [
-    answer,
+    correctAnswer,
     ...wrongAnswers.map((d) => d.toUpperCase()),
   ].sort(() => Math.random() - 0.5);
 
