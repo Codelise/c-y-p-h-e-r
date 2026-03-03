@@ -20,7 +20,7 @@ export default function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
       {/* Toggle Open/Close Sidebar */}
       <button
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-        className="absolute -right-3 top-10 bg-transparent text-cyan-400 rounded-full p-1 shadow-lg hover:scale-110 transition-transform"
+        className="absolute p-1 transition-transform bg-transparent rounded-full shadow-lg -right-3 top-10 text-cyan-400 hover:scale-110"
       >
         <span
           className={`material-symbols-outlined transition-transform duration-300 ${isSidebarOpen ? "" : "rotate-180"}`}
@@ -29,12 +29,12 @@ export default function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
         </span>
       </button>
       {/* Brand Identity */}
-      <div className="p-6 flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-400 to-purple-600 flex items-center justify-center text-white shadow-lg">
-          <span className="material-symbols-outlined text-2xl">security</span>
+      <div className="flex items-center gap-3 p-6">
+        <div className="flex items-center justify-center w-10 h-10 text-white rounded-full shadow-lg bg-gradient-to-br from-cyan-400 to-purple-600">
+          <span className="text-2xl material-symbols-outlined">security</span>
         </div>
         {!isSidebarOpen && (
-          <h1 className="text-white font-black text-lg whitespace-nowrap">
+          <h1 className="text-lg font-black text-white whitespace-nowrap">
             CipherMaster
           </h1>
         )}
@@ -62,7 +62,7 @@ export default function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
                 {item.icon}
               </span>
               {!isSidebarOpen && (
-                <span className="font-medium text-sm whitespace-nowrap">
+                <span className="text-sm font-medium whitespace-nowrap">
                   {item.label}
                 </span>
               )}{" "}
@@ -75,9 +75,9 @@ export default function Sidebar({ isSidebarOpen, setIsSidebarOpen }) {
       <div className="p-4 border-t border-white/5">
         <Link
           to="/settings"
-          className="flex items-center gap-4 px-4 py-3 text-slate-400 hover:text-white transition-colors group"
+          className="flex items-center gap-4 px-4 py-3 transition-colors text-slate-400 hover:text-white group"
         >
-          <span className="material-symbols-outlined group-hover:text-cyan-400 transition-colors">
+          <span className="transition-colors material-symbols-outlined group-hover:text-cyan-400">
             settings
           </span>
         </Link>

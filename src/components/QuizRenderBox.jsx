@@ -1,6 +1,11 @@
 import AnswerChoicesButtons from "./AnswerChoicesButtons";
 
-export default function QuizRenderBox({ display, type }) {
+export default function QuizRenderBox({
+  display,
+  type,
+  choices,
+  handleGameProcess,
+}) {
   // for determining if PigPen is the type of quiz
   const isPigPen =
     type === "PIGPEN"
@@ -41,7 +46,7 @@ export default function QuizRenderBox({ display, type }) {
         </div>
 
         {/* Multiple Choice Grid */}
-        <AnswerChoicesButtons />
+        <AnswerChoicesButtons choices={choices} onSelect={handleGameProcess} />
       </div>
     </section>
   );

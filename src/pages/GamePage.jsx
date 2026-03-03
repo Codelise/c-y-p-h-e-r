@@ -21,6 +21,28 @@ export default function GamePage() {
     startNewcurrentChallenge();
   }, []);
 
+  //  I LOVE THIS SHIT "????????"
+  const handleGameProcess = (selectedAnswer) => {
+    // for right/wrong answer
+    if (selectedAnswer === currentChallenge?.rightAnswer) {
+      alert("Correct");
+      setScore((score) => score + 100);
+    } else {
+      alert("Wrong Answer");
+    }
+
+    // for round checking
+    if (currentRound < 10) {
+      setCurrentRound(currentRound + 1);
+      startNewcurrentChallenge();
+    } else {
+      alert("Game Over");
+      setCurrentRound(1);
+      setScore(0);
+      startNewcurrentChallenge();
+    }
+  };
+
   return (
     <div className="flex min-h-screen bg-[#0b0b18] text-slate-200 overflow-hidden font-inter">
       <main
@@ -34,6 +56,8 @@ export default function GamePage() {
           <QuizRenderBox
             display={currentChallenge?.display}
             type={currentChallenge?.type}
+            choices={currentChallenge?.choices}
+            handleGameProcess={handleGameProcess}
           />
         </div>
 
